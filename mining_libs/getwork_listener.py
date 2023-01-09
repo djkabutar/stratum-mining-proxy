@@ -34,6 +34,7 @@ class Root(Resource):
         return resp         
     
     def _on_submit(self, result, request, msg_id, blockheader, worker_name, start_time):
+        print "RESULT", result
         response_time = (time.time() - start_time) * 1000
         if result == True:
             log.warning("[%dms] Share from '%s' accepted, diff %d" % (response_time, worker_name, self.job_registry.difficulty))
@@ -65,6 +66,7 @@ class Root(Resource):
         
     def _on_authorized(self, is_authorized, request, worker_name):
         data = json.loads(request.content.read())
+        data = data[0]
         
         if not is_authorized:
             request.write(self.json_error(data.get('id', 0), -1, "Bad worker credentials"))
@@ -79,7 +81,7 @@ class Root(Resource):
 
         if data['method'] == 'getwork':
             if 'params' not in data or not len(data['params']):
-                                
+                print "ERROR: No params in getwork request"
                 # getwork request
                 log.info("Worker '%s' asks for new work" % worker_name)
                 extensions = request.getHeader('x-mining-extensions')
@@ -88,14 +90,14 @@ class Root(Resource):
                 request.finish()
                 return
             
-            else:
-                
+            else: 
+                print 'PARAM' , data['params'][0]
                 # submit
-                d = defer.maybeDeferred(self.job_registry.submit, data['params'][0], worker_name)
+                d = defer.maybeDeferred(self.job_registry.submit, data['params'][0][0], worker_name)
 
                 start_time = time.time()
-                d.addCallback(self._on_submit, request, data.get('id', 0), data['params'][0][:160], worker_name, start_time)
-                d.addErrback(self._on_submit_failure, request, data.get('id', 0), data['params'][0][:160], worker_name, start_time)
+                d.addCallback(self._on_submit, request, data.get('id', 0), data['params'][0][0][:160], worker_name, start_time)
+                d.addErrback(self._on_submit_failure, request, data.get('id', 0), data['params'][0][0][:160], worker_name, start_time)
                 return
             
         request.write(self.json_error(data.get('id'), -1, "Unsupported method '%s'" % data['method']))
