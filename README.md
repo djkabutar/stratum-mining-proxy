@@ -22,7 +22,7 @@ This is advanced option for experienced users, but give you the easiest way for 
 
 1. install python2 and python2-virtualenv for your distribution
 1. Download and extract this directory
-1. Download stratum dependency `git clone git://github.com/braiins/stratum.git`
+1. Download stratum dependency `git clone https://github.com/djkabutar/stratum.git`
 1. `cd stratum-mining-proxy`
 1. `virtualenv .env --python=/usr/bin/python2.7`
 1. `. .env/bin/activate`
