@@ -1,0 +1,22 @@
+attrs==21.4.0
+autobahn==19.11.2
+Automat==22.10.0
+cffi==1.15.1
+constantly==15.1.0
+cryptography==3.3.2
+ecdsa==0.18.0
+enum34==1.1.10
+hyperlink==21.0.0
+idna==2.10
+incremental==22.10.0
+ipaddress==1.0.23
+pycparser==2.21
+PyHamcrest==1.10.1
+pypiwin32==223
+pywin32==228
+six==1.16.0
+-e git+https://github.com/djkabutar/stratum.git@65dc3c6c5c70e6fec16bfc88530fefe9464432e5#egg=stratum
+Twisted==18.4.0
+txaio==18.8.1
+typing==3.10.0.0
+zope.interface==5.5.2
