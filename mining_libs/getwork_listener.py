@@ -81,7 +81,6 @@ class Root(Resource):
 
         if data['method'] == 'getwork':
             if 'params' not in data or not len(data['params']):
-                print "ERROR: No params in getwork request"
                 # getwork request
                 log.info("Worker '%s' asks for new work" % worker_name)
                 extensions = request.getHeader('x-mining-extensions')
