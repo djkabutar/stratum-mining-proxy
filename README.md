@@ -12,9 +12,9 @@ This works on any system with Docker (Linux/Mac/Windows) and doesn't need anythi
 1. Download and extract this directory
 1. `cd stratum-mining-proxy`
 1. `docker build -t stratum-mining-proxy .`
-1. Run interactively: `docker run -it --rm -p 3333:3333 stratum-mining-proxy -o us-east.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
-1. Run interactively: `docker run -it --rm -p 3333:3333 stratum-mining-proxy -o eu.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
-1. Run as a service: `docker run -d --restart unless-stopped --rm -p 3333:3333 stratum-mining-proxy -o us-east.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
+1. Run interactively: `docker run -it --rm -p 3333:3333 -p 8332:8332 stratum-mining-proxy -o us-east.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
+1. Run interactively: `docker run -it --rm -p 3333:3333 -p 8332:8332 stratum-mining-proxy -o eu.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
+1. Run as a service: `docker run -d --restart unless-stopped -p 3333:3333 -p 8332:8332 stratum-mining-proxy -o us-east.stratum.slushpool.com -p 3333 -sh 0.0.0.0 -sp 3333`
 
 Installation on Linux using Git
 -------------------------------
